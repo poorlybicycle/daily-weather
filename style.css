@@ -24,4 +24,9 @@ header {
 
 #hi {
     display: block;
+    justify-content: right;
+}
+
+.displaybox {
+    justify-content: right;
 }

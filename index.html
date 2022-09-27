@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -36,19 +37,19 @@
         </div>
 
         <!--trying to add the righthand side-->
-        <div id="hi" class="row">
-            <div class="col">
-              1 of 3
-            </div>
-            <div class="col-5">
-              2 of 3 (wider)
-            </div>
-        <!--trying to add the righthand side box-->
+        <div class="column citysearchdisplay">
+            <h2 id = "citydisplay" class="bd-notification is-danger">City Display:</h2>
+            <p id="temp"></p>
+            <p id="wind"></p>
+            <p id="humidity"></p>
+            <p id="UVIndex"></p>
+        </div>
+    </div>
 
         <div class="col-9">
             <div class="container">
-                <div class="row" id="now">
-                    <p> what is this</p>
+                <div class="row displaybox" id="now">
+                    <p> box</p>
                 </div>
 
                 <div class="row" id="forecast"></div>
