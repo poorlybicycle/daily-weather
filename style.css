@@ -15,8 +15,13 @@ header {
     background-color: rgb(139, 160, 255);
     border-radius: 5px;
     border-color: rgb(139, 160, 255);
+    box-shadow: white;
 }
 
 .col-12 {
+    display: block;
+}
+
+#hi {
     display: block;
 }
