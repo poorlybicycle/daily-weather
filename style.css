@@ -1,7 +1,22 @@
+* {
+    font-family: sans-serif;
+}
+
 header {
-    background-image: linear-gradient(to right, blue, navy);
+    background-image: linear-gradient(to right, rgb(139, 160, 255), navy);
     color: white;
     text-align: center;
     font-size: larger;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
+    padding: 3px;
+}
+
+#search-btn {
+    background-color: rgb(139, 160, 255);
+    border-radius: 5px;
+    border-color: rgb(139, 160, 255);
+}
+
+.col-12 {
+    display: block;
 }
