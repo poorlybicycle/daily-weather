@@ -30,3 +30,16 @@ header {
 .displaybox {
     justify-content: right;
 }
+
+#forecast {
+    display: flex;
+    justify-content: space-around;
+}
+
+#forecast div {
+    flex: 0 0 15%
+}
+
+.border {
+    border: red 2px solid;
+}
