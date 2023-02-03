@@ -3,7 +3,7 @@ var APIKey = "e29ee6ce278c02dbe4f70b2ac2ff2385";
 var button = document.getElementById("search-btn");
 //can use querySelector(#search-Btn) - not specific by ID
 var input = document.getElementById("city");
-
+var historySection = document.getElementById("history");
 // //API call using city name:
 // api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} 
 
@@ -13,13 +13,19 @@ var input = document.getElementById("city");
 // fetch(queryURL)
 
 button.addEventListener("click", function(event) {
-    var cityname = input.value;
-    var APIurl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityname + "&units=imperial&appid=e29ee6ce278c02dbe4f70b2ac2ff2385";
+    var cityName = input.value;
+    var APIurl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=e29ee6ce278c02dbe4f70b2ac2ff2385";
     event.preventDefault();
     console.log("message");
     console.log(input.value);
     fetch(APIurl).then(function(response) {
         if (response.ok) {
+            var historyButton = document.createElement('button')
+            historyButton.textContent = cityName;
+            historyButton.setAttribute('value', cityName);
+            historyButton.addEventListener('click',getArray);
+            historySection.appendChild(historyButton);
+
             response.json().then(function(data) {
                 renderCurrentWeather(data)
                 var historyOfCities = [];
@@ -82,3 +88,35 @@ function renderForecastWeather(arrayOfWeatherObjects) {
 //then in your "previous" div from the HTML (the ID previous) (document.getElementById)
 //create buttons for each one of the cities retrieved in local storage (for loop and creating elements)
 //then once you make your new function, run it when the page loads
+
+function getArray () {
+    console.log('worked');
+    var cityName = this.value
+    console.log(cityName)
+    var APIurl = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=e29ee6ce278c02dbe4f70b2ac2ff2385";
+    
+    fetch(APIurl).then(function(response) {
+        if (response.ok) {
+            // var historyButton = document.createElement('button')
+            // historyButton.textContent = cityName;
+            // historyButton.setAttribute('value', cityName);
+            // historyButton.addEventListener('click',getArray);
+            // historySection.appendChild(historyButton);
+
+            response.json().then(function(data) {
+                renderCurrentWeather(data)
+                var historyOfCities = [];
+                if(localStorage.getItem("history")) {
+                    historyOfCities = JSON.parse(localStorage.getItem("history"))
+                }
+    
+                historyOfCities.push(data.name);
+
+                localStorage.setItem("history", JSON.stringify(historyOfCities))
+                var latitude = data.coord.lat;
+                var longitude = data.coord.lon;
+                getWeather(latitude, longitude);
+            })
+        }
+    })
+}
